@@ -7,7 +7,7 @@ const create = async (userData: IUser): Promise<IUser | null> => {
   const user = await User.findOne({ email })
 
   if (user) {
-    throw new Error('User already exists')
+    return user;
   }
 
   const result = await User.create(userData)
@@ -15,6 +15,36 @@ const create = async (userData: IUser): Promise<IUser | null> => {
   return result
 }
 
+const getAll = async (): Promise<IUser[] | null> => {
+  const result = await User.find()
+
+  return result
+}
+
+const getSingle = async (id: string): Promise<IUser | null> => {
+  const result = await User.findOne({ _id: id })
+
+  return result
+}
+
+const update = async (
+  id: string,
+  payload: Partial<IUser>
+): Promise<IUser | null> => {
+  const result = await User.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  })
+
+  if (!result) {
+    throw new Error(`Faild to update user`)
+  }
+
+  return result
+}
+
 export const UserService = {
   create,
+  update,
+  getSingle,
+  getAll,
 }

@@ -19,6 +19,10 @@ const UserSchema = new Schema<IUser, Record<string, never>>(
       type: Number,
       default: 50,
     },
+    reacted: {
+      type: [String],
+      default: [],
+    },
   },
   {
     timestamps: true,

@@ -1,17 +1,15 @@
 import { NextFunction, Request, Response } from 'express'
-import { UserService } from './user.service'
-
+import { RecipeService } from './recipe.service'
 
 const create = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = req.body
 
-    const result = await UserService.create(user)
-console.log(result);
+    const result = await RecipeService.create(user)
 
     res.status(200).json({
       success: true,
-      message: 'User created successfully',
+      message: 'Recipe created successfully',
       data: result,
     })
   } catch (error) {
@@ -19,25 +17,21 @@ console.log(result);
   }
 }
 
-const getAll = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const getAll = async (req: Request, res: Response, next: NextFunction) => {
   try {
-
-    const result = await UserService.getAll()
+    const result = await RecipeService.getAll()
 
     res.status(200).json({
       success: true,
-      message: 'User retrieved successfully',
+      message: 'Recipe retrieved successfully',
       data: result,
     })
   } catch (error) {
     next(error)
   }
 }
-const getSingle = async (
+
+const getSingleRecipe = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -45,11 +39,11 @@ const getSingle = async (
   try {
     const id = req.params.id
 
-    const result = await UserService.getSingle(id)
+    const result = await RecipeService.getSingleRecipe(id)
 
     res.status(200).json({
       success: true,
-      message: 'User retrieved successfully',
+      message: 'Recipe retrieved successfully',
       data: result,
     })
   } catch (error) {
@@ -62,12 +56,12 @@ const update = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id
 
     const updatedData = req.body
-    
-    const result = await UserService.update(id, updatedData)
+
+    const result = await RecipeService.update(id, updatedData)
 
     res.status(200).json({
       success: true,
-      message: 'User updated successfully',
+      message: 'Recipe updated successfully',
       data: result,
     })
   } catch (error) {
@@ -75,9 +69,9 @@ const update = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
-export const UserController = {
+export const RecipeController = {
   create,
-  update,
-  getSingle,
   getAll,
+  getSingleRecipe,
+  update,
 }

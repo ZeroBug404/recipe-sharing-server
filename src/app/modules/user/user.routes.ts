@@ -4,12 +4,12 @@ const router = express.Router();
 
 router.post("/create-user", UserController.create);
 
-// router.get("/:id", TreeController.getSingle);
+router.get("/:id", UserController.getSingle);
 
-// router.get("/", TreeController.getAll);
+router.get("/", UserController.getAll);
 
 // router.delete("/:id", TreeController.deleteTree);
 
-// router.patch("/:id", TreeController.update);
+router.patch("/:id", UserController.update);
 
 export const UserRoutes = router;
