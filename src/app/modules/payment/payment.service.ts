@@ -18,8 +18,8 @@ const insertStartupPaymentIntoDB = async (
         quantity: 1,
       },
     ],
-    success_url: 'http://localhost:3000/all-recipes',
-    cancel_url: 'https://localhost:3000/buy-coin',
+    success_url: 'https://recipe-sharing-green.vercel.app/all-recipes',
+    cancel_url: 'https://recipe-sharing-green.vercel.app/buy-coin',
   })
 
   if (!session) {
